@@ -122,19 +122,33 @@ public class busStopShortestPath {
 		
 		double distTo[] = new double[systemMatrix.length];
 		int edgeTo[] = new int[systemMatrix.length];
+		int visited [] = new int[systemMatrix.length];
 		
 		for(int i = 0; i <distTo.length; i++) {
 			if(i!= source) {
 				distTo[i] = Double.POSITIVE_INFINITY;
 			}
 		}
-		return;
 		
-	}
+		int position = source;
+		distTo[source] = 0;
+		visited[source] = 1;
+		
+		
 	
 	
 
+	}
+	private void relaxEdge(int source, int sink, double[] distTo, int[] edgeTo) {
+    	if(distTo[source] > distTo[sink] + systemMatrix[source][sink]) 
+    	{
+    		distTo[source] = distTo[source] + systemMatrix[source][sink];
+    		edgeTo[source] = source;
+    	}
+	}
+	
 }
+
 	
 
 
