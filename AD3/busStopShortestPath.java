@@ -17,7 +17,7 @@ public class busStopShortestPath {
 	busStopShortestPath()
 	{
 		try {
-			matrix();
+			systemMatrix();
 			
 		}catch (FileNotFoundException error)
 		{
@@ -25,7 +25,7 @@ public class busStopShortestPath {
 		}
 	}
 	
-	private void matrix() throws FileNotFoundException {
+	private void systemMatrix() throws FileNotFoundException {
 		
 		String currentLine;
 		
@@ -118,15 +118,21 @@ public class busStopShortestPath {
 		file1.close();
 	}
 	
-	
-	private void edgeRelax(int source, int sink, double[] edgeTo, double[] distTo) 
-	{
-		if(distTo[source] > distTo[source] + systemMatrix[source][sink]) 
-		{
-			distTo[source] = distTo[source] + systemMatrix[source][sink];
-			edgeTo[sink] = source;
+	public String shortestBusRoute(int source, int sink) {
+		
+		double distTo[] = new double[systemMatrix.length];
+		int edgeTo[] = new int[systemMatrix.length];
+		
+		for(int i = 0; i <distTo.length; i++) {
+			if(i!= source) {
+				distTo[i] = Double.POSITIVE_INFINITY;
+			}
 		}
+		return;
+		
 	}
+	
+	
 
 }
 	
