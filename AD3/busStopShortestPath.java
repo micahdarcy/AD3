@@ -134,16 +134,29 @@ public class busStopShortestPath {
 		distTo[source] = 0;
 		visited[source] = 1;
 		
+		int x = 0;
+		while (x < distTo.length) {
+
+            for (int i = 0; i < systemMatrix[position].length; i++) {
+
+                if (visited[i] == 0 && !Double.isNaN(systemMatrix[position][i])) 
+                {
+                    relaxEdge(distTo, edgeTo, i, position);
+                }
+            }
+		
 		if(distTo[sink] == Double.POSITIVE_INFINITY) {
-			return "Error. This bus route does not exist";
+			return "Error. This bus route does not exist.";
+		}
 		}
 		
 	
 	
 
 	}
-	private void relaxEdge(int source, int sink, double[] distTo, int[] edgeTo) {
-    	if(distTo[source] > distTo[sink] + systemMatrix[source][sink]) 
+	private void relaxEdge(double[] distTo, int[] edgeTo, int source, int sink) {
+    	
+		if(distTo[source] > distTo[sink] + systemMatrix[source][sink]) 
     	{
     		distTo[source] = distTo[source] + systemMatrix[source][sink];
     		edgeTo[source] = source;
