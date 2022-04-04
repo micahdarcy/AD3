@@ -120,9 +120,9 @@ public class busStopShortestPath {
 	
 	public String shortestBusRoute(int source, int sink) {
 		
-		double distTo[] = new double[systemMatrix.length];
-		int edgeTo[] = new int[systemMatrix.length];
-		int visited [] = new int[systemMatrix.length];
+		double distTo[] = new double[MAX_STOP];
+		int edgeTo[] = new int[MAX_STOP];
+		int visited [] = new int[MAX_STOP];
 		
 		for(int i = 0; i <distTo.length; i++) {
 			if(i!= source) {
@@ -134,6 +134,9 @@ public class busStopShortestPath {
 		distTo[source] = 0;
 		visited[source] = 1;
 		
+		if(distTo[sink] == Double.POSITIVE_INFINITY) {
+			return "Error. This bus route does not exist";
+		}
 		
 	
 	
