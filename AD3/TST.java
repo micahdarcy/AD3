@@ -63,7 +63,34 @@ public class TST<Value>{ // represents a symbol table of key-value pairs with st
 	        	return x;
 	        }
 	    }
+	  public void put(String key, Value val) {
+	        if (key == null) {
+	            throw new IllegalArgumentException("calls put() with null key");
+	        }
+	        if (!contains(key)) size++;
+	        else if(val == null) size--;       // delete existing key
+	        root = put(root, key, val, 0);
+	    }
+
+	    private Node<Value> put(Node<Value> x, String key, Value val, int d) {
+	        char c = key.charAt(d);
+	        if (x == null) {
+	            x = new Node<Value>();
+	            x.c = c;
+	        }
+	        if      (c < x.c)               x.left  = put(x.left,  key, val, d);
+	        else if (c > x.c)               x.right = put(x.right, key, val, d);
+	        else if (d < key.length() - 1)  x.mid   = put(x.mid,   key, val, d+1);
+	        else                            x.value   = val;
+	        return x;
+	    }
+	  public Iterable <String> keysWithPrefix(String prefix){
+		  if(prefix==null) {
+			  throw new IllegalArgumentException("calls keysWithPrefix() with null argument");
 	  
+		  }
+		  
+	  }
 	  
 
 }
