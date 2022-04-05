@@ -31,16 +31,39 @@ public class TST<Value>{ // represents a symbol table of key-value pairs with st
 		//to do: write get method 
 	}
 	
-	public Value get(String key) { //returnd the value associated with the given key 
+	public Value get(String key) { //returns the value associated with the given key 
 		 if (key == null) {
 	            throw new IllegalArgumentException("calls get() with null argument");
 	        }
 	        if (key.length() == 0) throw new IllegalArgumentException("key must have length >= 1");
 	        Node<Value> x = get(root, key, 0);
 	        if (x == null) return null;
-	        return x.val;
-	    
-		
+	        return x.value;
+	 
 	}
+	  private Node<Value> get(Node<Value> x, String key, int d) { // returning subtrie corresponding to given key 
+	        
+		  if (x == null) {
+			  return null;
+		  }
+	        if (key.length() == 0) {
+	        	throw new IllegalArgumentException("key must have length >= 1");
+	        }
+	        char c = key.charAt(d);
+	        if      (c < x.c) {
+	        	return get(x.left,  key, d);
+	        }
+	        else if (c > x.c)  {
+	        	return get(x.right, key, d);
+	        }
+	        else if (d < key.length() - 1) {
+	        	return get(x.mid,   key, d+1);
+	        }
+	        else{
+	        	return x;
+	        }
+	    }
+	  
+	  
 
 }
