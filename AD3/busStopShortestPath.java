@@ -146,6 +146,7 @@ public class busStopShortestPath {
 		visited[source] = 1;
 		String shortestRoute = "";
 		int x = 0;
+		double shortestDist = Double.MAX_VALUE;
 		while (x < distTo.length) {
 
             for (int i = 0; i < systemMatrix[position].length; i++) {
@@ -163,10 +164,13 @@ public class busStopShortestPath {
 		
 		for (int i = 0; i < distTo.length;i++) {
 
-            if (visited[i] != 1 && distTo[i]<Integer.MAX_VALUE) 
+            if (visited[i] != 1 && distTo[i]<shortestDist) 
             {
                 position = i;
+                shortestDist =  distTo[i];
                 
+                
+      
             }
         }
         x++;
@@ -187,7 +191,7 @@ public class busStopShortestPath {
 	
 
 	}
-	}
+	
 	
 
 	
