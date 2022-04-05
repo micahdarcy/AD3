@@ -30,5 +30,17 @@ public class TST<Value>{ // represents a symbol table of key-value pairs with st
 		return get(key) !=null;
 		//to do: write get method 
 	}
+	
+	public Value get(String key) { //returnd the value associated with the given key 
+		 if (key == null) {
+	            throw new IllegalArgumentException("calls get() with null argument");
+	        }
+	        if (key.length() == 0) throw new IllegalArgumentException("key must have length >= 1");
+	        Node<Value> x = get(root, key, 0);
+	        if (x == null) return null;
+	        return x.val;
+	    
+		
+	}
 
 }
