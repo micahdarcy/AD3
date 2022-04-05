@@ -76,6 +76,7 @@ public class busStopShortestPath {
 			lineFile.close();
 		}
 		file1.close();
+		
 
 		File transfersFileInput = new File("transfers.txt");
 		file1 = new Scanner(transfersFileInput);
