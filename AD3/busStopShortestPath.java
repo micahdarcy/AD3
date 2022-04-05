@@ -148,6 +148,11 @@ public class busStopShortestPath {
 		if(distTo[sink] == Double.POSITIVE_INFINITY) {
 			return "Error. This bus route does not exist.";
 		}
+		while (sink!=source) {
+			String shortestRoute = "\n" +edgeTo[sink];
+			sink = edgeTo[sink];
+		}
+		
 		}
 		
 	
