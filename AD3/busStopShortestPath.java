@@ -117,6 +117,17 @@ public class busStopShortestPath {
 		}
 		file1.close();
 	}
+
+	private void relaxEdge(double[] distTo, int[] edgeTo, int source, int sink) {
+    	
+		if(distTo[source] > distTo[sink] + systemMatrix[source][sink]) 
+    	{
+    		distTo[source] = distTo[source] + systemMatrix[source][sink];
+    		edgeTo[source] = source;
+    	}
+	}
+	
+
 	
 	public String shortestBusRoute(int source, int sink) {
 		
@@ -149,6 +160,17 @@ public class busStopShortestPath {
 		{
 			return "Error. This bus route does not exist.";
 		}
+		
+		for (int i = 0; i < distTo.length;i++) {
+
+            if (visited[i] != 1 && distTo[i]<Integer.MAX_VALUE) 
+            {
+                position = i;
+                
+            }
+        }
+        x++;
+    }
 		while (sink!=source) 
 		{
 			shortestRoute = "\n" + edgeTo[sink] + shortestRoute ;
@@ -158,22 +180,15 @@ public class busStopShortestPath {
 
         return "The cost: " + Double.toString(distTo[sink]) + " via the following route: " + shortestRoute;
 		
+       
 		}
 		
 	
 	
 
 	}
-	private void relaxEdge(double[] distTo, int[] edgeTo, int source, int sink) {
-    	
-		if(distTo[source] > distTo[sink] + systemMatrix[source][sink]) 
-    	{
-    		distTo[source] = distTo[source] + systemMatrix[source][sink];
-    		edgeTo[source] = source;
-    	}
 	}
 	
-}
 
 	
 
