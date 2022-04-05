@@ -133,7 +133,7 @@ public class busStopShortestPath {
 		int position = source;
 		distTo[source] = 0;
 		visited[source] = 1;
-		
+		String shortestRoute = "";
 		int x = 0;
 		while (x < distTo.length) {
 
@@ -145,13 +145,18 @@ public class busStopShortestPath {
                 }
             }
 		
-		if(distTo[sink] == Double.POSITIVE_INFINITY) {
+		if(distTo[sink] == Double.POSITIVE_INFINITY)
+		{
 			return "Error. This bus route does not exist.";
 		}
-		while (sink!=source) {
-			String shortestRoute = "\n" +edgeTo[sink];
+		while (sink!=source) 
+		{
+			shortestRoute = "\n" + edgeTo[sink] + shortestRoute ;
 			sink = edgeTo[sink];
 		}
+		shortestRoute = shortestRoute + "\n" + sink;
+
+        return "The cost: " + Double.toString(distTo[sink]) + " via the following route: " + shortestRoute;
 		
 		}
 		
