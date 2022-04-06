@@ -84,13 +84,28 @@ public class TST<Value>{ // represents a symbol table of key-value pairs with st
 	        else                            x.value   = val;
 	        return x;
 	    }
-	  public Iterable <String> keysWithPrefix(String prefix){
-		  if(prefix==null) {
-			  throw new IllegalArgumentException("calls keysWithPrefix() with null argument");
+	    public Iterable<String> keysWithPrefix(String prefix) { //iteartes over all of the keys in the symbol table after returning keys as an iterable
+	        if (prefix == null) {
+	            throw new IllegalArgumentException("calls keysWithPrefix() with null argument");
+	        }
+	        Queue<String> queue = new Queue<String>();
+	        Node<Value> x = get(root, prefix, 0);
+	        if (x == null) return queue;
+	        if (x.value != null) queue.enqueue(prefix);
+	        collect(x.mid, new StringBuilder(prefix), queue);
+	        return queue;
+	    }
+
+	    private void collect(Node<Value> x, StringBuilder prefix, Queue<String> queue) {
+	        if (x == null) return;
+	        collect(x.left,  prefix, queue);
+	        if (x.value != null) queue.enqueue(prefix.toString() + x.c);
+	        collect(x.mid,   prefix.append(x.c), queue);
+	        prefix.deleteCharAt(prefix.length() - 1);
+	        collect(x.right, prefix, queue);
+	    }
 	  
-		  }
-		  
-	  }
+	  
 	  
 
 }
